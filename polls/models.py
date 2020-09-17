@@ -19,12 +19,12 @@ class Question(models.Model):
     was_published_recently.short_description = 'Published recently?'  
     def is_published(self):
         now = timezone.now()
-        if now >= pub_date:
+        if now >= self.pub_date:
             return True
         return False
     def can_vote(self):
         now = timezone.now()
-        if now >= pub_date and now <end_date:
+        if now >= self.pub_date and now <self.end_date:
             return True
         return False
 
