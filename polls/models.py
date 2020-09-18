@@ -29,7 +29,6 @@ class Question(models.Model):
         return False
 
 
-
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
