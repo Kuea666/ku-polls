@@ -25,7 +25,7 @@ env = environ.Env()
 env.read_env()
 
 SECRET_KEY = env('SECRET_KEY', default='dumb-secret-key')
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = env.bool('DEBUG', default=True)
 ALLOWED_HOSTS = ['127.0.0.1','localhost'] 
 
 
