@@ -38,7 +38,7 @@ def detail(request,pk):
         })
     else:
         messages.error(request, "You can't vote")
-        return redirect('polls:index')
+        return redirect('polls:index')                      
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
