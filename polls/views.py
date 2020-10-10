@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render,redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.views import generic
 from .models import Choice, Question
@@ -7,10 +7,10 @@ from django.utils import timezone
 from django.contrib import messages
 
 
-
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -30,15 +30,17 @@ def vote(request, question_id):
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
-def detail(request,pk):
+
+def detail(request, pk):
     question = get_object_or_404(Question, pk=pk)
     if question.can_vote():
-        return render(request,'polls/detail.html',{
+        return render(request, 'polls/detail.html', {
             'question': question,
         })
     else:
         messages.error(request, "You can't vote")
-        return redirect('polls:index')                      
+        return redirect('polls:index')
+
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -50,4 +52,3 @@ class IndexView(generic.ListView):
         published in the future).
         """
         return Question.objects.order_by('-pub_date')
-
