@@ -7,3 +7,9 @@ application for conduction a poll or survey.
 [Requirements](https://github.com/Kuea666/ku-polls/wiki/Requirements)
 
 [Vision Statement](https://github.com/Kuea666/ku-polls/wiki/Vision-Statement)
+
+[Iteration1 Plan](https://github.com/Kuea666/ku-polls/wiki/Iteration-1-Plan)
+
+[Iteration2 Plan](https://github.com/Kuea666/ku-polls/wiki/Iteration-2-Plan)
+
+[Iteration3 Plan](https://github.com/Kuea666/ku-polls/wiki/Iteration-3-Plan)

@@ -1,14 +1,19 @@
+"""Create admin page."""
 from django.contrib import admin
 
 from .models import Choice, Question
 
 
 class ChoiceInline(admin.StackedInline):
+    """Can add choice in question"""
+
     model = Choice
     extra = 3
 
 
 class QuestionAdmin(admin.ModelAdmin):
+    """Custom question fields in admin page."""
+
     list_filter = ['pub_date']
     fieldsets = [
         (None,               {'fields': ['question_text']}),

@@ -1,3 +1,4 @@
+"""Create view."""
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
@@ -8,11 +9,21 @@ from django.contrib import messages
 
 
 class ResultsView(generic.DetailView):
+    """Result view for polls."""
+
     model = Question
     template_name = 'polls/results.html'
 
 
 def vote(request, question_id):
+    """Vote the selected choice.
+    Arguments:
+        question_id - is id of the question.
+    Return:
+        Redirect to results page.
+        Render the detail page.
+    """
+
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
@@ -32,6 +43,13 @@ def vote(request, question_id):
 
 
 def detail(request, pk):
+    """detail page.
+    Arguments:
+        pk - primary key (id) of the question.
+    Return:
+        Render HTML detail page.
+    """
+
     question = get_object_or_404(Question, pk=pk)
     if question.can_vote():
         return render(request, 'polls/detail.html', {
@@ -43,6 +61,8 @@ def detail(request, pk):
 
 
 class IndexView(generic.ListView):
+    """IndexView page."""    
+
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
 
@@ -51,4 +71,5 @@ class IndexView(generic.ListView):
         Return the last five published questions (not including those set to be
         published in the future).
         """
+        
         return Question.objects.order_by('-pub_date')
