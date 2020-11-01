@@ -53,12 +53,40 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 ]
 AUTHENTICATION_BACKENDS = (
-      # username/password authentication
-     'django.contrib.auth.backends.ModelBackend',  
+    # username/password authentication
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 LOGIN_REDIRECT_URL = 'main_index'
 LOGOUT_REDIRECT_URL = 'main_index'
+
+# Configured logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '%(asctime)s %(name)s %(levelname)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'console',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'polls': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+    },
+}
 
 ROOT_URLCONF = 'mysite.urls'
 
