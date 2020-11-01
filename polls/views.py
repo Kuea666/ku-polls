@@ -6,7 +6,7 @@ from django.views import generic
 from .models import Choice, Question
 from django.utils import timezone
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 
 class ResultsView(generic.DetailView):
     """Result view for polls."""
@@ -14,7 +14,7 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
-
+@login_required
 def vote(request, question_id):
     """Vote the selected choice.
     Arguments:
